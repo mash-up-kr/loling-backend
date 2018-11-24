@@ -1,0 +1,18 @@
+[
+    {
+        "userId": "user1",
+        "createdTimestamp": 1543089291608,
+        "hits": 0
+    },
+
+    {
+        "userId": "user2",
+        "createdTimestamp": 1543089291608,
+        "hits": 0
+    },
+    {
+        "userId": "user3",
+        "createdTimestamp": 1543089291608,
+        "hits": 0
+    }
+]
