@@ -15,6 +15,7 @@ const Bottle = db.define('Bottle', {
     createdTimestamp: {
         type: Sequelize.INTEGER,
     },
+    // 조회수
     hits: {
         type: Sequelize.INTEGER,
     },
