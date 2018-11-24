@@ -13,12 +13,15 @@ const Bottle = db.define('Bottle', {
         allowNull: false,
     },
     createdTimestamp: {
-        type: Sequelize.INTEGER,
+        type: Sequelize.BIGINT,
     },
     // 조회수
     hits: {
         type: Sequelize.INTEGER,
     },
+}, {
+    timestamps: false,
+    freezeTableName: true,
 });
 
 

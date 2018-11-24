@@ -31,8 +31,11 @@ const Message = db.define('Message', {
         type: Sequelize.STRING,
     },
     createdTimestamp: {
-        type: Sequelize.INTEGER,
+        type: Sequelize.BIGINT,
     },
+}, {
+    timestamps: false,
+    freezeTableName: true,
 });
 
 
