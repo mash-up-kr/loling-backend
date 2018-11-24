@@ -5,7 +5,7 @@ const environment = require('../environment');
 
 
 async function start() {
-    await db.authenticate();
+    await db.sync();
 
     app.listen(environment.config.PORT, () => {
         console.log('Server is running.');
