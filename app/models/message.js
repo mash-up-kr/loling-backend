@@ -12,6 +12,12 @@ const Message = db.define('Message', {
         type: Sequelize.INTEGER,
         allowNull: false,
     },
+    latitude: {
+        type: Sequelize.DOUBLE,
+    },
+    longitude: {
+        type: Sequelize.DOUBLE,
+    },
     country: {
         type: Sequelize.STRING,
     },
@@ -19,7 +25,7 @@ const Message = db.define('Message', {
         type: Sequelize.STRING,
     },
     weather: {
-        type: Sequelize.STRING,
+        type: Sequelize.INTEGER, // 날씨 코드.
     },
     content: {
         type: Sequelize.STRING,
