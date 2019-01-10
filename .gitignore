@@ -1,5 +1,5 @@
 .idea/
 node_modules/
-configs/*.config.js
-!configs/example.config.js
+environment/configs/*.config.ts
+!environment/configs/example.config.ts
 .DS_Store*
