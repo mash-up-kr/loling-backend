@@ -1,5 +1,7 @@
 # Loling Backend
 
+<img src="https://img.stackshare.io/service/8747/4zsOyxko_400x400.jpg" width="32" height="32"> <img src="https://img.stackshare.io/service/1612/bynNY5dJ.jpg" width="32" height="32">
+
 ## 요구사항
 
 - [node.js](https://nodejs.org) >= 8.12.0
