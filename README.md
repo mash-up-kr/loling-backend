@@ -14,6 +14,28 @@ cd loling-backend/
 npm install
 ```
 
+## 환경 설정 추가
+
+기본값으로 `LB_ENV` 값은 'local_dev' 입니다.
+
+'environment/configs/' 경로에 **'local_dev.config.ts'** 파일을 추가하고 'example.config.ts' 파일을 참고하여 환경 설정을 추가하세요.
+
+```typescript
+import { EnvironmentConfig } from '../environment-config';
+
+
+const localDevConfig: EnvironmentConfig = {
+    port: 3500,
+    database: {
+        type: 'sqlite',
+        database: './local_dev.sqlite',
+    },
+};
+
+
+export default localDevConfig;
+``` 
+
 ## 개발
 
 ```bash
