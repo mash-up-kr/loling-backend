@@ -2,22 +2,24 @@
     "name": "loling-backend",
     "version": "0.1.0",
     "description": "Loling 백엔드",
-    "author": "",
-    "license": "MIT",
+    "private": true,
+    "engines": {
+        "ndoe": ">= 8.12",
+        "npm": ">= 6"
+    },
     "scripts": {
-        "build": "tsc -p tsconfig.build.json",
-        "format": "prettier --write \"src/**/*.ts\"",
-        "start": "ts-node -r tsconfig-paths/register src/main.ts",
-        "start:dev": "nodemon",
-        "start:debug": "nodemon --config nodemon-debug.json",
-        "prestart:prod": "rimraf dist && tsc",
+        "build": "npx tsc -p tsconfig.build.json",
+        "start": "npx ts-node -r tsconfig-paths/register src/main.ts",
+        "start:dev": "npx nodemon",
+        "start:debug": "npx nodemon --config nodemon-debug.json",
+        "prestart:prod": "npx rimraf dist && tsc",
         "start:prod": "node dist/main.js",
-        "lint": "tslint -p tsconfig.json -c tslint.json",
-        "test": "jest",
-        "test:watch": "jest --watch",
-        "test:cov": "jest --coverage",
+        "lint": "npx tslint -p tsconfig.json -c tslint.json",
+        "test": "npx jest",
+        "test:watch": "npx jest --watch",
+        "test:cov": "npx jest --coverage",
         "test:debug": "node --inspect-brk -r tsconfig-paths/register -r ts-node/register node_modules/.bin/jest --runInBand",
-        "test:e2e": "jest --config ./test/jest-e2e.json"
+        "test:e2e": "npx jest --config ./test/jest-e2e.json"
     },
     "dependencies": {
         "@nestjs/common": "^5.4.0",
