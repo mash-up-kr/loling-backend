@@ -44,6 +44,7 @@
             "spaces",
             4
         ],
-        "no-consecutive-blank-lines": false
+        "no-consecutive-blank-lines": false,
+        "no-console": false
     }
 }
