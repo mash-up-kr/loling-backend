@@ -1,0 +1,67 @@
+@startuml
+class User {
+  int id
+  String userId?
+  String password?
+  String salt
+  String encryptedPhoneNumber?
+  String name?
+  String phoneNumber?
+  Date birthday?
+  Date createdAt
+  Bool anonymous
+  String token?
+}
+
+class Room {
+  int id
+  int creatorId
+  int parperId
+  Date createdAt
+  String invitationLink
+  String invitationToken
+}
+
+class RoomInvitation {
+  int roomId
+  int userId
+  Bool accepted
+}
+
+class RoomParticipatedUser {
+  int userId
+  int roomId
+}
+
+class Paper {
+  int id
+  int creatorId
+  int receiverId
+  String name
+  Date createdAt
+  Date dueDay
+}
+
+class Comment {
+  int paperId
+  int creatorId
+  String message
+  Date createdAt
+}
+
+class File {
+  int id
+  String url
+  String name
+  String extname
+}
+
+Room --> "1" Paper
+
+User "0..*" - "1..*" Room
+(User, Room) .. RoomParticipatedUser
+
+Paper "1" *-- "여러개" Comment : 포함
+
+Room "1" *-- "여러개" RoomInvitation : 포함
+@enduml
