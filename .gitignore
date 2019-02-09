@@ -1,5 +1,14 @@
 .idea/
+dist/
 node_modules/
 environment/configs/*.config.ts
 !environment/configs/example.config.ts
 .DS_Store*
+
+# Elastic Beanstalk Files
+.elasticbeanstalk/*
+!.elasticbeanstalk/*.cfg.yml
+!.elasticbeanstalk/*.global.yml
+
+# Sqlite databases
+*.sqlite.db
