@@ -1,0 +1,22 @@
+POST http://localhost:3500/users
+Content-Type: application/json
+
+{
+    "id": "userId1",
+    "name": "김개똥",
+    "password": "qwe09123",
+    "birthday": {
+        "year": 1997,
+        "month": 8,
+        "day": 31
+    },
+    "phoneNumber": "01012341234"
+}
+
+###
+
+GET http://localhost:3500/users/1
+Accept: application/json
+
+###
+

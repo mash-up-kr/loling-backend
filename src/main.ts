@@ -1,4 +1,6 @@
+import { ValidationPipe } from '@nestjs/common';
 import { NestFactory } from '@nestjs/core';
+import { environment } from '../environment';
 import { AppModule } from './app.module';
 
 
@@ -13,7 +15,15 @@ process.on('SIGINT', () => {
 
 async function bootstrap() {
     const app = await NestFactory.create(AppModule);
-    await app.listen(3000);
+
+    // 퀴리, 파라미터, 바디값을 검사합니다.
+    // 'skipMissingProperties' 옵션을 활성화하여 누락된 프로퍼티는 검사를 하지 않습니다.
+    // 따라서 꼭 존재해야 하는 프로퍼티는 '@IsDefined()' 데코레이터를 추가하시기 바랍니다.
+    // 참조:
+    //  https://github.com/typestack/class-validator#skipping-missing-properties
+    app.useGlobalPipes(new ValidationPipe({ skipMissingProperties: true }));
+
+    await app.listen(environment.config.port);
 }
 
 bootstrap();
