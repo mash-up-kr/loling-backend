@@ -6,7 +6,7 @@ class Environment {
 
     constructor(public readonly name: string) {
         try {
-            this.config = require(`./configs/${name}.config.ts`).default as EnvironmentConfig;
+            this.config = require(`./configs/${name}.config`).default as EnvironmentConfig;
         } catch (error) {
             if (error.name === 'MODULE_NOT_FOUND') {
                 throw new Error(`"${name}" 이름의 환경 설정을 찾을 수 없습니다. `
