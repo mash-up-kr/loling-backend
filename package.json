@@ -4,7 +4,7 @@
     "description": "Loling 백엔드",
     "private": true,
     "engines": {
-        "ndoe": "~8.12 || ~10.15",
+        "node": "~8.12 || ~10.15",
         "npm": ">= 6"
     },
     "scripts": {
