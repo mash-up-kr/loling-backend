@@ -3,6 +3,7 @@ import { APP_INTERCEPTOR } from '@nestjs/core';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { environment } from '../environment';
 import { AppController } from './app.controller';
+import { AuthModule } from './auth/auth.module';
 import { LoggerMiddleware } from './shared/logger.middleware';
 import { UserModule } from './user/user.module';
 
@@ -15,6 +16,7 @@ import { UserModule } from './user/user.module';
             synchronize: true,
         }),
         UserModule,
+        AuthModule,
     ],
     controllers: [AppController],
     providers: [

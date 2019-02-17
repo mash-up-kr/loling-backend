@@ -56,16 +56,27 @@ export class UserService {
         return await this.userRepository.save(user);
     }
 
+    async authorizeUserWithPassword(user: User, password: string): Promise<boolean> {
+        const { encryptedText } = await encrypt(password, this.getPasswordEncryptOption(user.passwordSalt));
+        return user.password === encryptedText;
+    }
+
     async encryptPhoneNumber(phoneNumber: string): Promise<string> {
         const { encryptedText } = await encrypt(phoneNumber, this.getPhoneNumberEncryptOption(phoneNumber));
         return encryptedText;
     }
 
-    private getPasswordEncryptOption(): EncryptOption {
-        return {
+    private getPasswordEncryptOption(salt?: string): EncryptOption {
+        const option: EncryptOption = {
             iteration: 130023,
             digest: environment.config.production ? 'sha512' : 'sha1',
         };
+
+        if (salt) {
+            option.salt = Buffer.from(salt, 'base64');
+        }
+
+        return option;
     }
 
     private getPhoneNumberEncryptOption(phoneNumber: string): EncryptOption {
