@@ -8,6 +8,10 @@ const exampleConfig: EnvironmentConfig = {
         type: 'mysql',
         url: 'mysql://localhost:5678/my_database',
     },
+    auth: {
+        secretKey: 'SOME_SECRET_KEY',
+        expiresIn: '5 days',
+    },
 };
 
 
