@@ -14,4 +14,8 @@ export interface EnvironmentConfig {
         key: string;
         secret: string;
     };
+    auth: {
+        secretKey: string;
+        expiresIn: string;
+    };
 }
