@@ -1,6 +1,8 @@
-import { Exclude, Transform } from 'class-transformer';
-import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
-import { Birthday } from '../common/payloads';
+import { Exclude } from 'class-transformer';
+import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from 'typeorm';
+import { TransformDay } from '../common/payloads';
+import { Paper } from '../paper/entities';
+import { Room } from '../room/entities';
 
 
 @Entity()
@@ -40,19 +42,11 @@ export class User {
     @Column({
         nullable: true,
     })
-    @Transform((birthday) => {
-        const birthdayDate = new Date(birthday);
-
-        return {
-            year: birthdayDate.getFullYear(),
-            month: birthdayDate.getMonth() + 1,
-            day: birthdayDate.getDate(),
-        } as Birthday;
-    })
+    @TransformDay()
     birthday?: string;
 
     @Column()
-    createdDatetime: string;
+    createdAt: string;
 
     @Column()
     anonymous: boolean;
@@ -62,4 +56,13 @@ export class User {
     })
     @Exclude()
     passwordSalt: string;
+
+    @OneToMany(() => Room, room => room.creator)
+    createdRooms: Room[];
+
+    @OneToMany(() => Room, room => room.receiver)
+    receivedRooms: Room[];
+
+    @OneToMany(() => Paper, paper => paper.creator)
+    createdPapers: Room[];
 }

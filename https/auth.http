@@ -2,7 +2,7 @@ POST http://localhost:3500/auth/sign-in
 Content-Type: application/json
 
 {
-    "userId": "userId1",
+    "userId": "userId2",
     "password": "qwe09123"
 }
 

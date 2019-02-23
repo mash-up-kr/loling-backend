@@ -2,15 +2,15 @@ POST http://localhost:3500/users
 Content-Type: application/json
 
 {
-    "id": "userId1",
-    "name": "김개똥",
+    "id": "userId2",
+    "name": "테스트2",
     "password": "qwe09123",
     "birthday": {
         "year": 1997,
         "month": 8,
         "day": 31
     },
-    "phoneNumber": "01012341234"
+    "phoneNumber": "01000000003"
 }
 
 ###
@@ -20,3 +20,19 @@ Accept: application/json
 
 ###
 
+POST http://localhost:3500/users
+Content-Type: application/json
+
+{
+    "id": "anonymous",
+    "name": "익명이다",
+    "password": "qwe09123",
+    "birthday": {
+        "year": 1995,
+        "month": 3,
+        "day": 22
+    },
+    "phoneNumber": "01044444444"
+}
+
+###

@@ -1,0 +1,71 @@
+POST http://localhost:3500/rooms
+Content-Type: application/json
+Authorization: bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwidXNlcklkIjoidXNlcklkMSIsImlhdCI6MTU1MDg0MzkxNCwiZXhwIjoxNTUxNzA3OTE0fQ.Wy8HpAfgNfwnDNQjfKEBQjhsUMFf8NhE1xeYiqszAzQ
+
+{
+    "dueDay": {
+        "year": 2019,
+        "month": 3,
+        "day": 22
+    },
+    "anonymousReceiver": {
+        "birthday": {
+            "year": 1995,
+            "month": 5,
+            "day": 22
+        },
+        "phoneNumber": "01000000002"
+    }
+}
+
+###
+POST http://localhost:3500/rooms/1/paper
+Content-Type: application/json
+Authorization: bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MywidXNlcklkIjoidXNlcklkMiIsImlhdCI6MTU1MDg0NDEwMCwiZXhwIjoxNTUxNzA4MTAwfQ.K8C1n3mGKJxLJhfi4jPc5gTGZ8P5yB_iXA5nLCXKUcA
+
+{
+    "data": "123"
+}
+
+
+###
+POST http://localhost:3500/rooms/5/comments
+Content-Type: application/json
+Authorization: bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwidXNlcklkIjoidXNlcklkMSIsImlhdCI6MTU1MDg0MDU3MiwiZXhwIjoxNTUxNzA0NTcyfQ.i5gQDTYcvXbtLdWNrz3I0Cn_HOqw-FHTse6Y6rQ2kZc
+
+{
+    "message": "123"
+}
+
+###
+
+GET http://localhost:3500/rooms/5/participants
+Authorization: bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MiwidXNlcklkIjoidXNlcklkMiIsImlhdCI6MTU1MDgzNzQxNywiZXhwIjoxNTUxNzAxNDE3fQ.JP-hYxgJWk7P9tLkYmxsaJrPwMRX91XFUi47mP_wK7E
+
+###
+
+
+GET http://localhost:3500/rooms
+Authorization: bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MiwidXNlcklkIjoidXNlcklkMiIsImlhdCI6MTU1MDgzNzQxNywiZXhwIjoxNTUxNzAxNDE3fQ.JP-hYxgJWk7P9tLkYmxsaJrPwMRX91XFUi47mP_wK7E
+
+###
+
+GET http://localhost:3500/rooms/5
+Authorization: bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwidXNlcklkIjoidXNlcklkMSIsImlhdCI6MTU1MDg0MDU3MiwiZXhwIjoxNTUxNzA0NTcyfQ.i5gQDTYcvXbtLdWNrz3I0Cn_HOqw-FHTse6Y6rQ2kZc
+
+###
+
+GET http://localhost:3500/rooms/5/comments
+Authorization: bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwidXNlcklkIjoidXNlcklkMSIsImlhdCI6MTU1MDg0MDU3MiwiZXhwIjoxNTUxNzA0NTcyfQ.i5gQDTYcvXbtLdWNrz3I0Cn_HOqw-FHTse6Y6rQ2kZc
+
+###
+
+GET http://localhost:3500/rooms?phoneNumber=01000000002
+Authorization: bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwidXNlcklkIjoidXNlcklkMSIsImlhdCI6MTU1MDg0MzkxNCwiZXhwIjoxNTUxNzA3OTE0fQ.Wy8HpAfgNfwnDNQjfKEBQjhsUMFf8NhE1xeYiqszAzQ
+
+
+###
+GET http://localhost:3500/rooms/1
+Authorization: bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MywidXNlcklkIjoidXNlcklkMiIsImlhdCI6MTU1MDg0NDEwMCwiZXhwIjoxNTUxNzA4MTAwfQ.K8C1n3mGKJxLJhfi4jPc5gTGZ8P5yB_iXA5nLCXKUcA
+
+###

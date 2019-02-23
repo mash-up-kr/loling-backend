@@ -4,6 +4,7 @@ import { UserDuplicatedPhoneNumberException, UserDuplicatedUserIdException } fro
 import { CreateUserPayload } from './payloads';
 import { FindUserByPhoneNumberQuery, FindUserByUserIdQuery } from './queries';
 import { UserService } from './user.service';
+import { ApiOkResponse } from '@nestjs/swagger';
 
 
 @Controller('users')
@@ -12,9 +13,20 @@ export class UserController {
     }
 
     @Post()
+    @ApiOkResponse({
+        description: '회원가입: 사용자를 생성합니다.',
+    })
     async createUser(@Body() payload: CreateUserPayload): Promise<User> {
         await this.checkUserId({ id: payload.id });
         await this.checkUserPhoneNumber({ phoneNumber: payload.phoneNumber });
+
+        const anonymousUser = await this.userService.getUserByEncryptedPhoneNumber(
+            payload.phoneNumber,
+        );
+
+        if (anonymousUser && anonymousUser.anonymous) {
+            return await this.userService.identifyAnonymous(anonymousUser, payload);
+        }
 
         return await this.userService.createUser(payload);
     }
@@ -31,8 +43,6 @@ export class UserController {
         const { phoneNumber } = query;
 
         if (await this.userService.getUserByPhoneNumber(phoneNumber)) {
-            throw new UserDuplicatedPhoneNumberException();
-        } else if (await this.userService.getUserByEncryptedPhoneNumber(phoneNumber)) {
             throw new UserDuplicatedPhoneNumberException();
         }
     }

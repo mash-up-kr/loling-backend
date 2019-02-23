@@ -3,16 +3,16 @@ import { InjectRepository } from '@nestjs/typeorm';
 import * as crypto from 'crypto';
 import { Repository } from 'typeorm';
 import { environment } from '../../environment';
+import { parseDay } from '../common/payloads';
 import { encrypt, EncryptOption } from '../lib/encryption';
 import { User } from './entities';
-import { CreateUserPayload } from './payloads';
+import { CreateAnonymousUserPayload, CreateUserPayload } from './payloads';
 
 
 @Injectable()
 export class UserService {
     constructor(
-        @InjectRepository(User)
-        private userRepository: Repository<User>,
+        @InjectRepository(User) private userRepository: Repository<User>,
     ) {
     }
 
@@ -38,12 +38,8 @@ export class UserService {
 
         user.userId = payload.id;
         user.name = payload.name;
-        user.birthday = new Date(
-            payload.birthday.year,
-            payload.birthday.month - 1,
-            payload.birthday.day,
-        ).toISOString();
-        user.createdDatetime = new Date().toISOString();
+        user.birthday = parseDay(payload.birthday).toISOString();
+        user.createdAt = new Date().toISOString();
         user.phoneNumber = payload.phoneNumber;
         user.anonymous = false;
 
@@ -54,6 +50,34 @@ export class UserService {
         user.password = encryptResult.encryptedText;
 
         return await this.userRepository.save(user);
+    }
+
+    async identifyAnonymous(user: User, payload: CreateUserPayload): Promise<User> {
+        user.userId = payload.id;
+        user.name = payload.name;
+        user.birthday = parseDay(payload.birthday).toISOString();
+        user.phoneNumber = payload.phoneNumber;
+        user.anonymous = false;
+
+        // 비밀번호를 암호화하여 저장합니다.
+        const encryptResult = await encrypt(payload.password, this.getPasswordEncryptOption());
+
+        user.passwordSalt = encryptResult.salt.toString('base64');
+        user.password = encryptResult.encryptedText;
+
+        return await this.userRepository.save(user);
+    }
+
+    async createAnonymousUser(payload: CreateAnonymousUserPayload): Promise<User> {
+        const user = new User();
+
+        user.encryptedPhoneNumber = await this.encryptPhoneNumber(payload.phoneNumber);
+        user.createdAt = new Date().toISOString();
+        user.anonymous = true;
+
+        await this.userRepository.save(user);
+
+        return user;
     }
 
     async authorizeUserWithPassword(user: User, password: string): Promise<boolean> {

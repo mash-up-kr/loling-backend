@@ -1,5 +1,6 @@
 import { ValidationPipe } from '@nestjs/common';
 import { NestFactory } from '@nestjs/core';
+import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
 import { environment } from '../environment';
 import { AppModule } from './app.module';
 
@@ -22,6 +23,16 @@ async function bootstrap() {
     // 참조:
     //  https://github.com/typestack/class-validator#skipping-missing-properties
     app.useGlobalPipes(new ValidationPipe({ skipMissingProperties: true }));
+
+    const options = new DocumentBuilder()
+        .setTitle('Loling 백엔드 API')
+        .setHost('0ec805.emporter.eu')
+        .setSchemes('https')
+        .build();
+
+    const document = SwaggerModule.createDocument(app, options);
+    SwaggerModule.setup('docs', app, document);
+
 
     await app.listen(environment.config.port);
 }

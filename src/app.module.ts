@@ -4,6 +4,9 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { environment } from '../environment';
 import { AppController } from './app.controller';
 import { AuthModule } from './auth/auth.module';
+import { CommonModule } from './common/common.module';
+import { PaperModule } from './paper/paper.module';
+import { RoomModule } from './room/room.module';
 import { LoggerMiddleware } from './shared/logger.middleware';
 import { UserModule } from './user/user.module';
 
@@ -17,6 +20,9 @@ import { UserModule } from './user/user.module';
         }),
         UserModule,
         AuthModule,
+        RoomModule,
+        PaperModule,
+        CommonModule,
     ],
     controllers: [AppController],
     providers: [
@@ -31,8 +37,8 @@ export class AppModule implements NestModule {
         consumer
             .apply(LoggerMiddleware)
             .forRoutes({
-                path: 'users',
-                method: RequestMethod.POST,
+                path: '*',
+                method: RequestMethod.ALL,
             });
     }
 }
